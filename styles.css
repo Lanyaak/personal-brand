@@ -1,0 +1,1015 @@
+/* ==========================================================================
+   LANYA KURDO — PERSONLIG PORTFOLIO & STUDENTPROFIL
+   Minimalistisk, stilren editorial design i mjuk babyrosa färgskala
+   ========================================================================== */
+
+/* 1 · Reset & Grundläggande Box-modell */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 2 · Designvariabler & Färgpalett */
+:root {
+    /* Babyrosa & Mjuk färgpalett */
+    --rosa-50: #fff6f9;
+    --rosa-100: #fdebf2;
+    --rosa-200: #fbd6e5;
+    --rosa-300: #f7b6d1;
+    --rosa-400: #f08cb8;
+    --rosa-500: #de6299;
+    --rosa-600: #b93d74;
+    --rosa-700: #8f2655;
+
+    /* Primära basfärger (Ljust läge) */
+    --bakgrund: #fdf8fa;
+    --yta: #ffffff;
+    --yta-subtil: #fbf1f5;
+    --yta-accent: #f7e4ed;
+
+    /* Textfärger */
+    --text-huvud: #22151b;
+    --text-rubrik: #1a0f14;
+    --text-dampad: #6b5762;
+    --text-ljus: #957f8c;
+
+    /* Ramar & Skuggor */
+    --kant: rgba(222, 98, 153, 0.16);
+    --kant-stark: rgba(222, 98, 153, 0.32);
+    --kant-subtil: rgba(0, 0, 0, 0.05);
+    --skugga-mjuk: 0 10px 30px -10px rgba(185, 61, 116, 0.08);
+    --skugga-svavande: 0 18px 38px -12px rgba(185, 61, 116, 0.14);
+
+    /* Typografi */
+    --typsnitt-rubrik: 'Cormorant Garamond', Georgia, serif;
+    --typsnitt-brodtext: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Avstånd & Radier */
+    --container-max: 1140px;
+    --radie-liten: 8px;
+    --radie-kort: 16px;
+    --radie-rund: 9999px;
+    --overgang: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Mörkt tema */
+body.morkt-lage {
+    --bakgrund: #130d10;
+    --yta: #1c1418;
+    --yta-subtil: #241a20;
+    --yta-accent: #302129;
+
+    --text-huvud: #fbeff4;
+    --text-rubrik: #ffffff;
+    --text-dampad: #baa3af;
+    --text-ljus: #8c7582;
+
+    --kant: rgba(247, 182, 209, 0.14);
+    --kant-stark: rgba(247, 182, 209, 0.3);
+    --kant-subtil: rgba(255, 255, 255, 0.05);
+    --skugga-mjuk: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    --skugga-svavande: 0 18px 40px -12px rgba(0, 0, 0, 0.7);
+}
+
+/* 3 · Grundstil */
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bakgrund);
+    color: var(--text-huvud);
+    font-family: var(--typsnitt-brodtext);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--bakgrund);
+    color: var(--text-huvud);
+    line-height: 1.65;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+/* 4 · Sidhuvud & Navigation */
+.sidhuvud {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253, 248, 250, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--kant);
+    transition: var(--overgang);
+}
+
+body.morkt-lage .sidhuvud {
+    background: rgba(19, 13, 16, 0.88);
+}
+
+.nav-container {
+    width: 90%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logotyp {
+    text-decoration: none;
+    color: var(--text-rubrik);
+}
+
+.logo-namn {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.nav-meny ul {
+    list-style: none;
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+}
+
+.nav-meny a {
+    text-decoration: none;
+    color: var(--text-dampad);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--overgang);
+    position: relative;
+}
+
+.nav-meny a:hover {
+    color: var(--rosa-600);
+}
+
+.nav-meny a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1.5px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--rosa-500);
+    transition: width 0.25s ease;
+}
+
+.nav-meny a:hover::after {
+    width: 100%;
+}
+
+.header-hoger {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Tema-knapp */
+.tema-knapp {
+    display: inline-flex;
+    align-items: center;
+    background: var(--yta);
+    border: 1px solid var(--kant);
+    color: var(--text-huvud);
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--radie-rund);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--overgang);
+    font-family: var(--typsnitt-brodtext);
+}
+
+.tema-knapp:hover {
+    border-color: var(--rosa-400);
+    background: var(--yta-subtil);
+}
+
+/* Knappar */
+.knapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.6rem;
+    border-radius: var(--radie-rund);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--overgang);
+    background: var(--rosa-500);
+    color: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 14px rgba(222, 98, 153, 0.22);
+    font-family: var(--typsnitt-brodtext);
+}
+
+.knapp:hover {
+    background: var(--rosa-600);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(222, 98, 153, 0.32);
+}
+
+.knapp-liten {
+    padding: 0.45rem 1rem;
+    font-size: 0.82rem;
+}
+
+.knapp-linje {
+    background: transparent;
+    color: var(--text-huvud);
+    border: 1px solid var(--kant-stark);
+    box-shadow: none;
+}
+
+.knapp-linje:hover {
+    background: var(--yta-subtil);
+    color: var(--rosa-600);
+    border-color: var(--rosa-500);
+}
+
+/* 5 · Hero-sektion */
+.hero-sektion {
+    padding: 4.5rem 0 3.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-sektion::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(251, 214, 229, 0.45) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+body.morkt-lage .hero-sektion::before {
+    background: radial-gradient(circle, rgba(222, 98, 153, 0.12) 0%, transparent 70%);
+}
+
+.hero-container {
+    width: 90%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+}
+
+.hero-etikett {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 1rem;
+    background: var(--yta-subtil);
+    border: 1px solid var(--kant);
+    border-radius: var(--radie-rund);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--rosa-600);
+    margin-bottom: 1.5rem;
+}
+
+.namn-omslag {
+    margin-bottom: 2.8rem;
+    border-bottom: 1px solid var(--kant);
+    padding-bottom: 2rem;
+}
+
+.stort-namn {
+    font-family: var(--typsnitt-rubrik);
+    font-size: clamp(3.2rem, 9vw, 6.8rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--text-rubrik);
+    margin-bottom: 0.6rem;
+}
+
+.roll-subtitel {
+    font-size: clamp(0.85rem, 2vw, 1.02rem);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rosa-600);
+}
+
+.hero-kort-rutnat {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.hero-kort {
+    background: var(--yta);
+    border: 1px solid var(--kant);
+    border-radius: var(--radie-kort);
+    padding: 2.4rem;
+    box-shadow: var(--skugga-mjuk);
+    transition: var(--overgang);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hero-kort:hover {
+    border-color: var(--kant-stark);
+    box-shadow: var(--skugga-svavande);
+}
+
+.kort-etikett {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--rosa-500);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.hero-ingress-rubrik {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.85rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--text-rubrik);
+    margin-bottom: 1.2rem;
+}
+
+.hero-text {
+    font-size: 1rem;
+    color: var(--text-dampad);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+
+.hero-text:last-of-type {
+    margin-bottom: 2rem;
+}
+
+.hero-knapprad {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Snabbprofil */
+.fakta-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+.fakta-punkt {
+    border-bottom: 1px dashed var(--kant);
+    padding-bottom: 1rem;
+}
+
+.fakta-punkt:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.punkt-titel {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-ljus);
+    margin-bottom: 0.25rem;
+}
+
+.punkt-varde {
+    font-size: 0.95rem;
+    color: var(--text-huvud);
+    line-height: 1.45;
+}
+
+.status-ledig {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #10b981;
+    font-weight: 600;
+}
+
+.status-prick {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+
+/* 6 · Statement Banner */
+.statement-banner {
+    background: var(--yta-subtil);
+    border-top: 1px solid var(--kant);
+    border-bottom: 1px solid var(--kant);
+    padding: 3rem 0;
+    margin: 2rem 0 4rem;
+}
+
+.banner-innehall {
+    width: 90%;
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.banner-citat {
+    font-family: var(--typsnitt-rubrik);
+    font-size: clamp(1.4rem, 3vw, 2.1rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--text-rubrik);
+}
+
+/* 7 · Generella Sektionsstilar */
+.sektion {
+    padding: 4.5rem 0;
+}
+
+.sektionshuvud {
+    max-width: 740px;
+    margin-bottom: 3rem;
+}
+
+.sektion-undertitel {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--rosa-500);
+    margin-bottom: 0.6rem;
+}
+
+.sektion-titel {
+    font-family: var(--typsnitt-rubrik);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--text-rubrik);
+    margin-bottom: 1rem;
+}
+
+.sektion-beskrivning {
+    font-size: 1.05rem;
+    color: var(--text-dampad);
+    line-height: 1.65;
+}
+
+/* 8 · Vård till Marknadsföring */
+.fordelar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.fordel-kort {
+    background: var(--yta);
+    border: 1px solid var(--kant);
+    border-radius: var(--radie-kort);
+    padding: 2.2rem;
+    box-shadow: var(--skugga-mjuk);
+    transition: var(--overgang);
+    position: relative;
+    overflow: hidden;
+}
+
+.fordel-kort::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--rosa-500);
+    transition: height 0.3s ease;
+}
+
+.fordel-kort:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--skugga-svavande);
+    border-color: var(--kant-stark);
+}
+
+.fordel-kort:hover::after {
+    height: 100%;
+}
+
+.fordel-nummer {
+    display: block;
+    font-family: var(--typsnitt-rubrik);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--rosa-400);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.fordel-rubrik {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text-rubrik);
+    margin-bottom: 0.8rem;
+    line-height: 1.25;
+}
+
+.fordel-text {
+    font-size: 0.94rem;
+    color: var(--text-dampad);
+    line-height: 1.6;
+}
+
+/* 9 · Tidslinje */
+.tidslinje {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    padding-left: 2rem;
+}
+
+.tidslinje::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 10px;
+    bottom: 20px;
+    width: 2px;
+    background: var(--kant-stark);
+}
+
+.tidslinje-post {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.tidslinje-post:last-child {
+    margin-bottom: 0;
+}
+
+.tidslinje-punkt {
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bakgrund);
+    border: 3px solid var(--rosa-500);
+    box-shadow: 0 0 0 4px var(--bakgrund);
+}
+
+.tidslinje-post.aktiv .tidslinje-punkt {
+    background: var(--rosa-500);
+}
+
+.tidslinje-ar {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--rosa-600);
+    margin-bottom: 0.6rem;
+}
+
+.tidslinje-kort {
+    background: var(--yta);
+    border: 1px solid var(--kant);
+    border-radius: var(--radie-kort);
+    padding: 2rem;
+    box-shadow: var(--skugga-mjuk);
+}
+
+.kort-tagg {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: var(--yta-subtil);
+    color: var(--rosa-600);
+    border: 1px solid var(--kant);
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radie-rund);
+    margin-bottom: 0.8rem;
+}
+
+.skola-titel {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--text-rubrik);
+    margin-bottom: 0.2rem;
+}
+
+.program-titel {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--rosa-500);
+    margin-bottom: 1rem;
+}
+
+.utbildning-beskrivning {
+    font-size: 0.95rem;
+    color: var(--text-dampad);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+}
+
+.kurs-lista {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.4rem;
+}
+
+.kurs-lista li {
+    font-size: 0.88rem;
+    color: var(--text-huvud);
+    font-weight: 500;
+}
+
+/* 10 · Om mig & Mål (100% utan ikoner eller emojis) */
+.om-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.om-paragraf {
+    font-size: 1rem;
+    color: var(--text-dampad);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+}
+
+.varderingar-rad {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.8rem;
+}
+
+.vardering-piller {
+    background: var(--yta-subtil);
+    border: 1px solid var(--kant);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radie-rund);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--rosa-600);
+}
+
+.om-kort {
+    background: var(--yta);
+    border: 1px solid var(--kant);
+    border-radius: var(--radie-kort);
+    padding: 2.2rem;
+    box-shadow: var(--skugga-mjuk);
+}
+
+.kort-rubrik {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-rubrik);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--kant);
+    padding-bottom: 0.8rem;
+}
+
+.mal-punkt {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.4rem;
+    align-items: flex-start;
+}
+
+.mal-punkt:last-child {
+    margin-bottom: 0;
+}
+
+.mal-nummer {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--rosa-500);
+    line-height: 1;
+    min-width: 24px;
+    padding-top: 2px;
+}
+
+.mal-text-wrap strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-rubrik);
+    margin-bottom: 0.25rem;
+}
+
+.mal-text-wrap p {
+    font-size: 0.88rem;
+    color: var(--text-dampad);
+    line-height: 1.5;
+}
+
+/* 11 · Färdigheter (Helt utan ikoner eller emojis) */
+.kompetens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1.8rem;
+}
+
+.kompetens-box {
+    background: var(--yta);
+    border: 1px solid var(--kant);
+    border-radius: var(--radie-kort);
+    padding: 2.2rem;
+    box-shadow: var(--skugga-mjuk);
+    transition: var(--overgang);
+    position: relative;
+}
+
+.kompetens-box:hover {
+    border-color: var(--kant-stark);
+    transform: translateY(-3px);
+}
+
+.kompetens-nummer {
+    display: block;
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--rosa-300);
+    margin-bottom: 0.4rem;
+}
+
+body.morkt-lage .kompetens-nummer {
+    color: var(--rosa-700);
+}
+
+.kompetens-kategori {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--text-rubrik);
+    margin-bottom: 1.4rem;
+}
+
+.fardighet-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.fardighet-lista li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    color: var(--text-huvud);
+    border-bottom: 1px dashed var(--kant-subtil);
+    padding-bottom: 0.5rem;
+}
+
+.fardighet-lista li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.niva-tagg {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radie-rund);
+    background: var(--yta-subtil);
+    color: var(--rosa-600);
+    border: 1px solid var(--kant);
+}
+
+/* 12 · Kontaktsektion */
+.kontakt-kort {
+    background: linear-gradient(135deg, var(--yta) 0%, var(--yta-subtil) 100%);
+    border: 1px solid var(--kant-stark);
+    border-radius: var(--radie-kort);
+    padding: 3.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--skugga-svavande);
+}
+
+.kontakt-innehall {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.kontakt-rubrik {
+    font-family: var(--typsnitt-rubrik);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--text-rubrik);
+    margin-bottom: 1.2rem;
+}
+
+.kontakt-beskrivning {
+    font-size: 1.05rem;
+    color: var(--text-dampad);
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
+}
+
+.kontakt-knappar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.epost-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--yta);
+    border: 1px solid var(--kant-stark);
+    padding: 0.6rem 0.6rem 0.6rem 1.4rem;
+    border-radius: var(--radie-rund);
+    box-shadow: var(--skugga-mjuk);
+    max-width: 100%;
+}
+
+.epost-adress {
+    font-family: var(--typsnitt-brodtext);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text-rubrik);
+}
+
+.knapp-kopiera {
+    background: var(--rosa-500);
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.1rem;
+    font-size: 0.84rem;
+    border-radius: var(--radie-rund);
+    cursor: pointer;
+    transition: var(--overgang);
+}
+
+.knapp-kopiera:hover {
+    background: var(--rosa-600);
+}
+
+/* 13 · Sidfot */
+.sidfot {
+    border-top: 1px solid var(--kant);
+    padding: 2.5rem 0;
+    background: var(--yta);
+}
+
+.sidfot-innehall {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.sidfot-namn {
+    display: block;
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--text-rubrik);
+}
+
+.sidfot-roll {
+    font-size: 0.82rem;
+    color: var(--text-dampad);
+}
+
+.sidfot-hoger p {
+    font-size: 0.82rem;
+    color: var(--text-ljus);
+}
+
+/* 14 · Responsivitet */
+@media (max-width: 900px) {
+    .hero-kort-rutnat {
+        grid-template-columns: 1fr;
+    }
+
+    .om-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-meny {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-container {
+        height: 64px;
+    }
+
+    .hero-sektion {
+        padding: 2.5rem 0;
+    }
+
+    .hero-kort {
+        padding: 1.6rem;
+    }
+
+    .tidslinje {
+        padding-left: 1.5rem;
+    }
+
+    .tidslinje-punkt {
+        left: -1.5rem;
+    }
+
+    .kontakt-kort {
+        padding: 2.5rem 1.2rem;
+    }
+
+    .epost-box {
+        flex-direction: column;
+        border-radius: var(--radie-kort);
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .sidfot-innehall {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* 15 · Klick-Glitter (Märkbart långsam & svävande effekt över 3 sekunder) */
+.glitter-partikel {
+    position: fixed;
+    pointer-events: none;
+    user-select: none;
+    z-index: 99999;
+    font-family: var(--typsnitt-rubrik), Georgia, serif;
+    line-height: 1;
+    transform: translate(-50%, -50%);
+    will-change: transform, opacity, filter;
+    animation: glitter-animering var(--varaktighet, 3.2s) cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes glitter-animering {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(0, 0) scale(0.2) rotate(0deg);
+        filter: drop-shadow(0 0 2px rgba(222, 98, 153, 0.5));
+    }
+    12% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) translate(calc(var(--dx) * 0.35), calc(var(--dy) * 0.35)) scale(1.1) rotate(calc(var(--rot) * 0.2));
+        filter: drop-shadow(0 0 5px var(--farg, #fbd6e5));
+    }
+    45% {
+        opacity: 0.85;
+        transform: translate(-50%, -50%) translate(calc(var(--dx) * 0.75), calc(var(--dy) * 0.75 + 14px)) scale(0.9) rotate(calc(var(--rot) * 0.5));
+    }
+    75% {
+        opacity: 0.45;
+        transform: translate(-50%, -50%) translate(var(--dx), calc(var(--dy) + 32px)) scale(0.6) rotate(calc(var(--rot) * 0.8));
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(var(--dx), calc(var(--dy) + 48px)) scale(0.15) rotate(var(--rot));
+        filter: drop-shadow(0 0 1px transparent);
+    }
+}
+
+.knapp:active,
+.tema-knapp:active,
+.knapp-kopiera:active {
+    transform: scale(0.97);
+}
