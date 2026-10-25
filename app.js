@@ -4,13 +4,6 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    const cookieinstallningar = document.getElementById("cookieinstaellningar");
-    cookieinstallningar?.addEventListener("click", () => {
-        if (window.Cookiebot) {
-            window.Cookiebot.renew();
-        }
-    });
-
     // 1. Hantering av mörkt och ljust färgtema
     const temaKnapp = document.getElementById("tema-knapp");
     const temaText = temaKnapp ? temaKnapp.querySelector(".tema-text") : null;
