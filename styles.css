@@ -288,22 +288,73 @@ body.morkt-lage .hero-sektion::before {
 .namn-omslag {
     margin-bottom: 2.8rem;
     border-bottom: 1px solid var(--kant);
-    padding-bottom: 2rem;
+    padding-bottom: 2.2rem;
+}
+
+/* Profilheader högst upp i hero */
+.hero-profil-header {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.profil-avatar-wrap {
+    position: relative;
+    width: 210px;
+    height: 270px;
+    flex-shrink: 0;
+    border-radius: 26px;
+    padding: 4px;
+    background: linear-gradient(135deg, var(--rosa-400), var(--rosa-200));
+    box-shadow: 0 12px 32px rgba(222, 98, 153, 0.22);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.profil-avatar-wrap:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(222, 98, 153, 0.32);
+}
+
+.profil-avatar-bild {
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    object-fit: cover;
+    object-position: center 15%;
+    display: block;
+    background: var(--yta);
+}
+
+.profil-status-prick {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    background-color: #22c55e;
+    border: 3.5px solid var(--yta);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3);
+}
+
+.namn-text-kolumn {
+    display: flex;
+    flex-direction: column;
 }
 
 .stort-namn {
     font-family: var(--typsnitt-rubrik);
-    font-size: clamp(3.2rem, 9vw, 6.8rem);
+    font-size: clamp(3rem, 7.5vw, 6.4rem);
     font-weight: 400;
     line-height: 0.95;
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: var(--text-rubrik);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
 }
 
 .roll-subtitel {
-    font-size: clamp(0.85rem, 2vw, 1.02rem);
+    font-size: clamp(0.82rem, 1.8vw, 0.98rem);
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -315,23 +366,6 @@ body.morkt-lage .hero-sektion::before {
     grid-template-columns: 1.35fr 1fr;
     gap: 2rem;
     align-items: stretch;
-}
-
-.hero-kort {
-    background: var(--yta);
-    border: 1px solid var(--kant);
-    border-radius: var(--radie-kort);
-    padding: 2.4rem;
-    box-shadow: var(--skugga-mjuk);
-    transition: var(--overgang);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.hero-kort:hover {
-    border-color: var(--kant-stark);
-    box-shadow: var(--skugga-svavande);
 }
 
 .kort-etikett {
@@ -810,7 +844,174 @@ body.morkt-lage .kompetens-nummer {
     border: 1px solid var(--kant);
 }
 
-/* 12 · Kontaktsektion */
+/* 12 · Portfolio & Kursprojekt */
+.portfolio-sektion {
+    background: var(--yta-subtil);
+    border-top: 1px solid var(--kant);
+    border-bottom: 1px solid var(--kant);
+}
+
+.projekt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.2rem;
+    align-items: stretch;
+}
+
+.projekt-kort {
+    background: var(--yta);
+    border: 1px solid var(--kant);
+    border-radius: var(--radie-kort);
+    padding: 2.4rem;
+    box-shadow: var(--skugga-mjuk);
+    transition: var(--overgang);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.projekt-kort:hover {
+    border-color: var(--rosa-400);
+    transform: translateY(-4px);
+    box-shadow: var(--skugga-svavande);
+}
+
+.projekt-topp {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.projekt-kurs {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rosa-600);
+}
+
+.projekt-status-tagg {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radie-rund);
+    background: var(--yta-subtil);
+    color: var(--text-dampad);
+    border: 1px solid var(--kant);
+}
+
+.projekt-rubrik {
+    font-family: var(--typsnitt-rubrik);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-rubrik);
+    line-height: 1.25;
+    margin-bottom: 1.1rem;
+}
+
+.projekt-beskrivning {
+    font-size: 0.96rem;
+    color: var(--text-dampad);
+    line-height: 1.68;
+    margin-bottom: 1.4rem;
+}
+
+.projekt-larande {
+    background: var(--yta-subtil);
+    border: 1px solid var(--kant);
+    border-radius: 12px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1.4rem;
+}
+
+.projekt-larande strong {
+    display: block;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-rubrik);
+    margin-bottom: 0.5rem;
+}
+
+.projekt-larande ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.projekt-larande li {
+    font-size: 0.88rem;
+    color: var(--text-huvud);
+    line-height: 1.5;
+}
+
+.projekt-taggar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.6rem;
+}
+
+.tagg {
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radie-rund);
+    background: var(--yta-subtil);
+    color: var(--rosa-600);
+    border: 1px solid var(--kant);
+}
+
+.projekt-lankar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--kant-subtil);
+}
+
+.projekt-lank {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text-huvud);
+    text-decoration: none;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radie-rund);
+    border: 1px solid var(--kant-stark);
+    transition: var(--overgang);
+}
+
+.projekt-lank:hover {
+    color: var(--rosa-600);
+    border-color: var(--rosa-400);
+    background: var(--yta-subtil);
+}
+
+.projekt-lank-framhav {
+    background: var(--rosa-500);
+    color: #ffffff;
+    border-color: transparent;
+}
+
+.projekt-lank-framhav:hover {
+    background: var(--rosa-600);
+    color: #ffffff;
+}
+
+.projekt-badge-klar {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--rosa-600);
+}
+
+/* 13 · Kontaktsektion */
 .kontakt-kort {
     background: linear-gradient(135deg, var(--yta) 0%, var(--yta-subtil) 100%);
     border: 1px solid var(--kant-stark);
@@ -916,8 +1117,36 @@ body.morkt-lage .kompetens-nummer {
     color: var(--text-ljus);
 }
 
+.cookieinstaellningar {
+    margin-top: 0.5rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-dampad);
+    font: inherit;
+    font-size: 0.82rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /* 14 · Responsivitet */
 @media (max-width: 900px) {
+    .hero-profil-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+
+    .profil-avatar-wrap {
+        width: 170px;
+        height: 220px;
+        border-radius: 22px;
+    }
+
+    .profil-avatar-bild {
+        border-radius: 18px;
+    }
+
     .hero-kort-rutnat {
         grid-template-columns: 1fr;
     }
